@@ -37,6 +37,7 @@ let pulse = 0;
 let pointerX = 0;
 let pointerY = 0;
 let activeEra = "spark";
+let eraTicking = false;
 
 function initThree() {
   renderer = new THREE.WebGLRenderer({
@@ -156,15 +157,25 @@ function buildGlyphCloud() {
 
 function updateEra() {
   const sections = [...document.querySelectorAll("[data-era]")];
-  const mid = window.innerHeight * 0.52;
-  let next = "spark";
+  const viewportCenter = window.innerHeight / 2;
+  const scrollRoot = document.scrollingElement || document.documentElement;
+  let next = sections[0]?.dataset.era || "spark";
+  let closest = Number.POSITIVE_INFINITY;
 
   for (const section of sections) {
     const rect = section.getBoundingClientRect();
-    if (rect.top <= mid && rect.bottom >= mid) {
+    const center = rect.top + rect.height / 2;
+    const visible = Math.max(0, Math.min(rect.bottom, window.innerHeight) - Math.max(rect.top, 0));
+    const score = Math.abs(center - viewportCenter) - visible * 0.35;
+
+    if (score < closest) {
+      closest = score;
       next = section.dataset.era;
-      break;
     }
+  }
+
+  if (window.scrollY + window.innerHeight >= scrollRoot.scrollHeight - 2) {
+    next = sections[sections.length - 1]?.dataset.era || next;
   }
 
   if (next !== activeEra) {
@@ -173,6 +184,15 @@ function updateEra() {
     eraLine.textContent = eras[next] || eras.spark;
     document.body.dataset.era = next;
   }
+}
+
+function scheduleEraUpdate() {
+  if (eraTicking) return;
+  eraTicking = true;
+  requestAnimationFrame(() => {
+    eraTicking = false;
+    updateEra();
+  });
 }
 
 function animate(time) {
@@ -224,8 +244,11 @@ function initInteraction() {
     cursorLight.style.transform = `translate3d(${event.clientX}px, ${event.clientY}px, 0) translate3d(-50%, -50%, 0)`;
   });
 
-  window.addEventListener("scroll", updateEra, { passive: true });
-  window.addEventListener("resize", resize);
+  window.addEventListener("scroll", scheduleEraUpdate, { passive: true });
+  window.addEventListener("resize", () => {
+    resize();
+    scheduleEraUpdate();
+  });
 
   pulseButton.addEventListener("click", () => {
     pulse = 1.4;
@@ -282,4 +305,3 @@ try {
   updateEra();
   drawFallback();
 }
-
