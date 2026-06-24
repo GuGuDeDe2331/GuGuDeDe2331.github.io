@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#060504">
+  <meta name="description" content="The Human Signal - 一件关于人类文明精华的沉浸式网页艺术品。">
+  <title>The Human Signal | 人类长信号</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@500;700;900&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/styles.css">
+</head>
+<body>
+  <canvas id="world" aria-hidden="true"></canvas>
+  <canvas id="fallback-world" aria-hidden="true"></canvas>
+
+  <div class="grain" aria-hidden="true"></div>
+  <div class="cursor-light" aria-hidden="true"></div>
+
+  <main id="top" class="experience">
+    <section class="scene scene-prime" data-era="spark" aria-labelledby="title">
+      <div class="mast">
+        <p class="seal">THE HUMAN SIGNAL</p>
+        <h1 id="title">人类长信号</h1>
+        <p class="thesis">
+          火把夜晚打开，语言把孤独打开，数字把星空打开，城市把陌生人打开。
+          我把这一切做成一件会呼吸的网页：不是目录，是一座可以进入的文明祭坛。
+        </p>
+      </div>
+      <div class="axis" aria-hidden="true">
+        <span>fire</span>
+        <span>word</span>
+        <span>number</span>
+        <span>city</span>
+        <span>care</span>
+        <span>machine</span>
+        <span>sky</span>
+      </div>
+    </section>
+
+    <section class="scene" data-era="fire" aria-labelledby="fire-title">
+      <div class="verse">
+        <p class="glyph">01</p>
+        <h2 id="fire-title">火</h2>
+        <p>我们第一次向黑暗借来边界。食物变软，夜晚变长，故事开始围着光旋转。</p>
+      </div>
+      <blockquote>文明不是从胜利开始的，它从一群人愿意围坐开始。</blockquote>
+    </section>
+
+    <section class="scene" data-era="word" aria-labelledby="word-title">
+      <div class="verse">
+        <p class="glyph">02</p>
+        <h2 id="word-title">字</h2>
+        <p>声音离开喉咙，进入泥板、竹简、纸页和屏幕。记忆不再只属于一个人。</p>
+      </div>
+      <blockquote>文字是时间的桥，也是陌生人之间最安静的握手。</blockquote>
+    </section>
+
+    <section class="scene" data-era="number" aria-labelledby="number-title">
+      <div class="verse">
+        <p class="glyph">03</p>
+        <h2 id="number-title">数</h2>
+        <p>我们数羊，数星，数心跳，数误差。最后发现理性不是冰冷，而是一种谦逊。</p>
+      </div>
+      <blockquote>数学把宇宙写成可验证的诗。</blockquote>
+    </section>
+
+    <section class="scene" data-era="city" aria-labelledby="city-title">
+      <div class="verse">
+        <p class="glyph">04</p>
+        <h2 id="city-title">城</h2>
+        <p>道路把脚步连接，法律把冲突折叠，市场把需求翻译，学校把明天提前。</p>
+      </div>
+      <blockquote>城市是人类把彼此当作未来来建造。</blockquote>
+    </section>
+
+    <section class="scene" data-era="care" aria-labelledby="care-title">
+      <div class="verse">
+        <p class="glyph">05</p>
+        <h2 id="care-title">仁</h2>
+        <p>真正珍贵的不是我们能制造多强的工具，而是我们愿意把脆弱也纳入秩序。</p>
+      </div>
+      <blockquote>同情心是文明里最先进的技术。</blockquote>
+    </section>
+
+    <section class="scene" data-era="machine" aria-labelledby="machine-title">
+      <div class="verse">
+        <p class="glyph">06</p>
+        <h2 id="machine-title">机</h2>
+        <p>轮、钟、印刷机、发动机、芯片、神经网络。机器不断替我们扩大手和眼睛。</p>
+      </div>
+      <blockquote>工具越强，人越需要知道自己为何而做。</blockquote>
+    </section>
+
+    <section class="scene scene-final" data-era="sky" aria-labelledby="sky-title">
+      <div class="verse">
+        <p class="glyph">07</p>
+        <h2 id="sky-title">天</h2>
+        <p>从洞穴到轨道，从诗到代码，人类一直在做同一件事：给短暂的生命寻找更大的回声。</p>
+      </div>
+      <a class="return-link" href="#top" aria-label="回到顶部">回到长信号</a>
+    </section>
+  </main>
+
+  <aside class="instrument" aria-label="文明仪表">
+    <button id="pulse-button" class="icon-button" type="button" aria-label="点亮文明脉冲">
+      <span></span>
+    </button>
+    <div class="readout">
+      <span id="era-name">spark</span>
+      <strong id="era-line">listen to the long signal</strong>
+    </div>
+  </aside>
+
+  <script type="module" src="assets/js/art.js"></script>
+</body>
+</html>
+
